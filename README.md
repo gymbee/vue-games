@@ -1,4 +1,4 @@
-# games-mvp
+# Game navigator
 Project assumed to be launched from domain root location.
 Live demo: https://portfolio.sergijenko.eu/game-navigator/
 
