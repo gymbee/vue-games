@@ -1,4 +1,6 @@
 # games-mvp
+Project assumed to be launched from domain root location.
+Live demo: https://portfolio.serfijenko.eu/game-navigator/
 
 ## Project setup
 ```
