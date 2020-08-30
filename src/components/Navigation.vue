@@ -2,26 +2,18 @@
     <div>
         <Link :text="'All games'" :href="'/'" />
         <Link 
-            :text="favQtySpan" 
+            :text="`Favorites (${allFavs.length})`" 
             :href="'/favorites'"
-            v-html="favQtySpan"
         />
     </div>
 </template>
 
 <script>
 import Link from '@/components/UI/Link'
-import FavoritesMixin from '@/mixins/favorites'
+import { mapGetters } from 'vuex' 
 export default {
-    mixins: [FavoritesMixin],
-    components: {
-        Link
-    },
-    data() {
-        return {
-            favQtySpan: 'Favorites (<span class="favqty">0</span>)'
-        }
-    }
+    components: { Link },
+    computed: mapGetters(['allFavs'])
 }
 </script>
 

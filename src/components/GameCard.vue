@@ -22,14 +22,12 @@
 <script>
 import Button from '@/components/UI/Button'
 export default {
+    components: { Button },
     props: {
         game: {
             type: Object,
             required: true
         }
-    },
-    components: {
-        Button
     }
 }
 </script>

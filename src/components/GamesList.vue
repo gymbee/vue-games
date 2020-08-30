@@ -1,32 +1,21 @@
 <template>
     <div>
+
+        <p v-if="!qty">No games to show</p>
         <GameCard
             v-for="game of games"
             v-bind:key="game.id + 'game'"
             v-bind:game="game"
         />
-        <p v-if="!areGamesToShow">No games to show</p>
-
+    
     </div>
 </template>
 
 <script>
 import GameCard from '@/components/GameCard'
 export default {
-    props: ['games'],
-    components: {
-        GameCard
-    },
-    data() {
-        return {
-            areGamesToShow: false
-        }
-    },
-    mounted() {
-        setTimeout(() => {
-            if(this.games.length) this.areGamesToShow = true
-        },10)
-    }
+    props: ['games', 'qty'],
+    components: { GameCard }
 } 
 </script>
 

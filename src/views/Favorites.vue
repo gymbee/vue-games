@@ -2,27 +2,24 @@
     <div>
         <h1>Favorites</h1>
         <p v-if="favsToDisplay.length">From recent to long ago</p>
-        <GamesList :games="favsToDisplay" />
+        <GamesList :games="favsToDisplay" :qty="favsToDisplay.length" />
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex' 
 import GamesList from '@/components/GamesList'
-import FavoritesMixin from '@/mixins/favorites'
 export default {
-    title: 'Favorites',
-    mixins: [FavoritesMixin],
-    mounted() {
-        this.updateFavsToDisplay()
-    },
+    components: { GamesList },
+    computed: mapGetters(['favsToDisplay', 'allGames']),
+    methods: mapActions(['getFavsToDisplay']),
     watch: {
-        games() {
-            this.updateFavsToDisplay()
+        allGames() {
+            this.getFavsToDisplay()
         }
     },
-    components: {
-        GamesList
-    },
-    props: ['games']
+    mounted() {
+        this.getFavsToDisplay()
+    }
 }
 </script>

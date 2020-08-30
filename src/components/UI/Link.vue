@@ -3,19 +3,17 @@
 </template>
 
 <script>
-import FavoritesMixin from '@/mixins/favorites'
+import { mapActions } from 'vuex' 
 export default {
-    mixins: [FavoritesMixin],
     props: ['text', 'href'],
     data() {
-        return {
-            lastRoute: this.$route.path
-        }
+        return { lastRoute: this.$route.path }
     },
     methods: {
+        ...mapActions(['getFavsToDisplay']),
         reloadFavIfActive() {
             if (this.$el.classList.contains('router-link-exact-active') && this.lastRoute === this.$route.path && this.href === '/favorites') {
-                location.reload();
+                this.getFavsToDisplay()
             }
         }
     },

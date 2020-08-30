@@ -2,7 +2,7 @@
   <div id="app">
     <Navigation />
 
-    <router-view :games="allGames" />
+    <router-view />
     
     <Navigation />
   </div>
@@ -10,14 +10,13 @@
 
 <script>
 import Navigation from '@/components/Navigation'
-import GamesMixin from '@/mixins/games'
+import {mapActions} from 'vuex' 
 export default {
-  mixins: [GamesMixin],
-  components: {
-    Navigation  
-  },
-  created: function() {
+  components: { Navigation },
+  methods: mapActions(['getAllGames', 'getAllFavs']),
+  created() {
     this.getAllGames()
+    this.getAllFavs()
   },
   watch: {
     $route: {
@@ -25,7 +24,7 @@ export default {
       handler(to, from) {
         document.title = to.meta.title || document.title
       }
-    },
+    }
   }
 }
 </script>

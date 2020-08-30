@@ -1,8 +1,8 @@
 <template>
     <button 
         v-if="type === 'favHeart'" 
-        v-on:click="favoriteClickHandler(gameId)"
-        v-bind:class="{'favorite': isFavorite(gameId)}"
+        v-on:click="favBtnClickHandler(gameId)"
+        v-bind:class="{'favorite': allFavs.includes(gameId)}"
         class="heart-button"
     >
     <font-awesome-icon icon="heart" />
@@ -12,10 +12,11 @@
 </template>
 
 <script>
-import FavoritesMixin from '@/mixins/favorites'
+import { mapActions, mapGetters } from 'vuex' 
 export default {
-    mixins: [FavoritesMixin],
     props: ['text', 'type', 'gameId'],
+    computed: mapGetters(['allFavs']),
+    methods: mapActions(['favBtnClickHandler', 'isFavorite'])
 }
 </script>
 
